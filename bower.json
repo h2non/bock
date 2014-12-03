@@ -1,0 +1,7 @@
+{
+  "name": "bock",
+  "description": "Next-generation reliable HTTP mocking and traffic interceptor using Service Workers",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": "h2non/bock"
+}
