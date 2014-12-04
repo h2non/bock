@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>bock interceptor</title>
+  <script src="../bock.js"></script>
+  <script src="//cdn.rawgit.com/lil-js/http/0.1.15/http.js"></script>
+  <script type="text/javascript">
+    navigator.serviceWorker.register('/lib/worker.js', { scope: '/lib/' }).then(function (registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope)
+      sendSampleRequests()
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err)
+    })
+
+    function sendSampleRequests() {
+      lil.http('http://httpbin.org/status/204', function (err, res) {
+        console.log(err, res)
+      })
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
