@@ -8,8 +8,8 @@ module.exports = function(config) {
     frameworks: ['mocha'],
     browsers: [
       'ChromeCanary',
-      'Firefox'
-    ], 
+      'FirefoxNightly'
+    ],
     reports: ['progress'],
     singleRun: true
   })
