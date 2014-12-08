@@ -3,11 +3,11 @@
 Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec]
 and providing an **elegant** and **simple programmatic approach**
 
-Note that ServiceWorker is still an experimental and new Web standard which is still [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers.
+Note that ServiceWorker is still an experimental and new Web standard which is still [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
 
 Consider that this library is very much a work in progress, as I enjoy with it as an experimental hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
 
-If you are new with Service Workers, before getting started you could take a look to the [explainer][explainer] document, [HTML5rocks introduction][html5rocks] post and the [draft specification][spec]
+If you are new with ServiceWorker, before getting started you could take a look to the [explainer][explainer] document, [HTML5rocks introduction][html5rocks] post and the [draft specification][spec]
 
 ## Installation
 
