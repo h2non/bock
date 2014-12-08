@@ -79,9 +79,9 @@ Bock.prototype.times = function (times) {
   return this
 }
 
-Bock.prototype.body =
-Bock.prototype.withBody = function (body) {
+Bock.prototype.body = function (body) {
   this.config.body = body
+  return this
 }
 
 Bock.prototype.replyHeaders =
@@ -97,7 +97,6 @@ Bock.prototype.replyWithBody = function (body) {
 }
 
 Bock.prototype.reply =
-Bock.prototype.reply =
 Bock.prototype.replyWith = function (code, body, headers) {
   this.config.responseCode = code == null ? 200 : code
   if (body) {
@@ -106,22 +105,27 @@ Bock.prototype.replyWith = function (code, body, headers) {
   if (headers) {
     this.config.responseHeaders = headers
   }
-  this.forward()
-  return this
+  return this.forward()
 }
 
 Bock.prototype.forward = function () {
-  return this.service.add(this.id, this.config)
+  store.append(this)
+  return this.service.append(this.id, this.config).catch(onFailure)
 }
 
 function normalizeURL(url) {
   return url.replace(/\/\/+(\s+)?$/g, '/')
 }
 
+function onFailure(ex) {
+  throw ex
+}
+
 },{"./proxy":3,"./store":5,"./utils":6}],2:[function(require,module,exports){
-var _ = require('./utils')
 var Bock = require('./bock')
+var store = require('./store')
 var service = require('./service')
+var merge = require('./utils').merge
 var hasServiceWorker = 'serviceWorker' in navigator
 
 module.exports = bock
@@ -131,26 +135,34 @@ function bock(url, options) {
   return new Bock(service, url, options)
 }
 
-function resolveServiceWorker(options) {
-  if (!hasServiceWorker) {
-    throw new Error('Service Worker is not supported in the current browser')
-  }
-  return service(_.merge({ path: bock.workerPath }, options))
-}
-
 bock.VERSION = '0.1.0-beta.0'
 bock.workerPath = '/bock.worker.js'
-bock.Bock = Bock
 
-bock.isControllable = function () {
+bock.isControllable = bock.isEnabled = function () {
   return navigator.serviceWorker.controller != null
 }
 
 bock.stop = function () {
-  return service().stop()
+  return service().unregister()
 }
 
-},{"./bock":1,"./service":4,"./utils":6}],3:[function(require,module,exports){
+bock.cleanAll = function () {
+  store.flush()
+  return service().flush()
+}
+
+bock.mocks = function () {
+  return store.all()
+}
+
+function resolveServiceWorker(options) {
+  if (!hasServiceWorker) {
+    throw new Error('ServiceWorker is not supported in the current browser')
+  }
+  return service(merge({ path: bock.workerPath }, options))
+}
+
+},{"./bock":1,"./service":4,"./store":5,"./utils":6}],3:[function(require,module,exports){
 module.exports = Proxy
 
 function Proxy() {}
@@ -205,12 +217,8 @@ function Service(options) {
   this.service = getServiceWorker(options)
 }
 
-Service.prototype.add = function (id, config) {
-  return sendWorkerMessage.call(this, { topic: 'bock.add', id: id, config: config })
-}
-
-Service.prototype.remove = function (id, config) {
-  return sendWorkerMessage.call(this, { topic: 'bock.remove', id: id, config: config })
+Service.prototype.append = function (id, config) {
+  return sendWorkerMessage.call(this, { topic: 'bock.append', id: id, config: config })
 }
 
 Service.prototype.remove = function (id) {
@@ -221,12 +229,12 @@ Service.prototype.flush = function (id) {
   return sendWorkerMessage.call(this, { topic: 'bock.flush' })
 }
 
-Service.prototype.close = function () {
-  var promise = Promise.resolve(null)
+Service.prototype.unregister = function () {
   if (serviceWorkerInstance) {
-    promise = serviceWorkerInstance.unregister()
+    return serviceWorkerInstance.unregister()
+  } else {
+    return Promise.resolve(null)
   }
-  return promise
 }
 
 function sendWorkerMessage(data) {
@@ -267,8 +275,8 @@ function getScriptScope(options) {
 }
 
 },{}],5:[function(require,module,exports){
-var store = exports
 var buf = []
+var store = exports
 
 store.append = function (data) {
   buf.push(data)
@@ -280,20 +288,23 @@ store.remove = function (id) {
 }
 
 store.get = function (id) {
-  for (var i = 0, l = buf.length; i < l; i += 1) {
-    if (buf[i].id === id) {
+  var i, l, isString = typeof id === 'string'
+  for (i = 0, l = buf.length; i < l; i += 1) {
+    if ((isString && buf[i].id === id) || buf[i] === id) {
       return buf[i]
     }
   }
   return null
 }
 
-store.flush = function () {
-  buf.splice(0)
+store.all = function () {
+  return buf.map(function (mock) {
+    return { id: mock.id, config: mock.config }
+  })
 }
 
-store.all = function () {
-  return buf.slice()
+store.flush = function () {
+  buf.splice(0)
 }
 
 },{}],6:[function(require,module,exports){

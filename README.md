@@ -95,6 +95,116 @@ bock('http://my.api.com')
 
 ## API
 
+### bock(baseUrl, [ options ])
+
+Create a new `Bock` mocking/proxy scope
+
+#### bock#get(path)
+
+Intercept a GET request with the given URL path
+
+#### bock#post(path)
+
+Intercept a POST request with the given URL path
+
+#### bock#put(path)
+
+Intercept a PUT request with the given URL path
+
+#### bock#delete(path)
+
+Intercept a DELETE request with the given URL path
+
+#### bock#head(path)
+
+Intercept a HEAD request with the given URL path
+
+#### bock#patch(path)
+
+Intercept a PATCH request with the given URL path
+
+#### bock#params(params)
+
+Define the request params to match. Support is still in progress, use query search string at URI level instead
+
+#### bock#body(body)
+
+Define the request body to match. Note that body matching is currently not supported
+
+#### bock#headers(headers)
+
+Define the request headers to match
+
+#### bock#auth(user, password)
+
+Current not supported. Use `Authorization` header instead
+
+#### body#replyHeaders(headers)
+Alias: `replyWithHeaders()`
+
+Define custom headers to inject in the mock response
+
+#### body#replyBody(body)
+Alias: `replyWithBody()`
+
+Define a custom body data to inject in the mock response
+
+#### body#reply(code, [ body, headers ])
+Alias: `replyWith()`
+
+Define the response status code to inject in the mock response, and optionally the response body and headers
+
+#### bock#proxy(url, [ body, headers ])
+
+Forward the matched request to another destination overriding the URL and optionally overriding a custom body and request headers
+
+#### bock#withHeaders(headers)
+
+Proxy mode only. Override the default request headers
+
+#### bock#withMethod(method)
+
+Proxy mode only. Override the default request method
+
+#### bock#witBody(body)
+
+Proxy mode only. Override the default request body
+
+#### bock#credentials(type)
+
+Proxy mode only. Define a custom request send credentials mode.
+See [fetch][fetch-credentials] specification
+
+#### bock#forward()
+
+Proxy mode only. Enable request forwarding.
+**You must call this method** to register a proxy request
+
+### bock.isEnabled()
+Alias: `isControllable()`
+
+Return `true` if the ServiceWorker in currently controlling the current page
+
+### bock.cleanAll()
+
+Disable and flush all mocks/proxy configurations. Restore to initial state
+
+### bock.mocks()
+
+Return a collection of mocks configuration
+
+### bock.stop()
+
+Stop and unregister the ServiceWorker in the current scope.
+Please be aware that the `ServiceWorker` livecycle is handled by the browser and it could persist if another tab/window is also using it
+
+See the [spec][spec] for more information
+
+### bock.VERSION
+Type: `string`
+
+Current library semantic version
+
 ## To Do list
 
 - Support regular expressions for better versatility on URL pattern matching
@@ -117,3 +227,4 @@ MIT - Tomas Aparicio
 [explainer]: https://github.com/slightlyoff/ServiceWorker/blob/master/explainer.md#getting-started
 [html5rocks]: http://www.html5rocks.com/en/tutorials/service-worker/introduction/
 [travis]: https://travis-ci.org/h2non/bock
+[fetch-credentials]: https://fetch.spec.whatwg.org/#concept-request-credentials-mode

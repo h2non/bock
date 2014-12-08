@@ -5,17 +5,15 @@
   <script src="../bock.js"></script>
   <script src="//cdn.rawgit.com/lil-js/http/0.1.15/http.js"></script>
   <script type="text/javascript">
-    // configure mocks
+    // configure proxy
     bock('http://httpbin.org')
       .get('/status/204')
-      .replyWithBody('Hello World')
-      .replyWithHeaders({ 'Content-Type': 'text/plain' })
-      .reply(200)
+      .proxy('http://httpbin.org/status/200')
+      .forward()
 
     function sendSampleRequest() {
       lil.http('http://httpbin.org/status/204', function (err, res) {
         console.log('Response status is', res.status, 'instead of 204')
-        console.log('and response body is:', res.data)
       })
     }
   </script>

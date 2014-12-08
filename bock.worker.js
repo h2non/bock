@@ -1,6 +1,8 @@
+'use strict'
+
 var store = []
 
-function findMockById(id) {
+function removeById(id) {
   for (var i = 0, l = store.length; i < l; i += 1) {
     if (store[i].id === id) {
       store.splice(i, 1)
@@ -13,10 +15,13 @@ self.addEventListener('message', function (event) {
   var data = event.data
   if (data) {
     switch (data.topic) {
-      case 'bock.add':
+      case 'bock.append':
         store.push({ id: data.id, config: data.config })
         break
       case 'bock.remove':
+        removeById(data.id)
+        break
+      case 'bock.sync':
         store = data.config
         break
       case 'bock.flush':
@@ -24,11 +29,6 @@ self.addEventListener('message', function (event) {
         break
     }
   }
-})
-
-self.addEventListener('activate', function (event) {
-  console.log('Activate:', event)
-  event.waitUntil(Promise.resolve())
 })
 
 self.addEventListener('fetch', function (event) {
@@ -56,7 +56,7 @@ function buildMockResponse(config) {
 function proxyRequest(config) {
   return fetch(config.proxy, {
     method: config.proxyMethod || config.method,
-    body: config.body || config.proxyBody,
+    body: config.proxyBody || config.body,
     headers: config.headers || config.proxyHeaders,
     credentials: config.credentials
   })
@@ -81,25 +81,18 @@ function matchURL(request) {
   }
 }
 
-function matchParams(request, config) {
-
-}
-
-function matchBody() {
-
-}
-
 function matchHeaders(request) {
   return function (mock) {
     var headers = mock.headers
     var requestHeaders = request.headers
-    if (headers) {
-      for (var prop in headers) {
-        if (requestHeaders.has(prop) && !requestHeaders.get(prop).match(new RegExp(headers[prop], 'i'))) {
-          return false
-        }
-      }
+    if (headers) for (var prop in headers) {
+      if (matchHeader(requestHeaders, headers, prop)) return false
     }
     return true
   }
+}
+
+function matchHeader(requestHeaders, headers, prop) {
+  return requestHeaders.has(prop)
+    && !requestHeaders.get(prop).match(new RegExp(headers[prop], 'i'))
 }
