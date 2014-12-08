@@ -1,4 +1,4 @@
-# bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Code Climate](https://codeclimate.com/github/h2non/bock/badges/gpa.svg)](https://codeclimate.com/github/h2non/bock) [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
+# bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
 Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec] which provides an **elegant**, **expressive** and **simple programmatic approach**
 
@@ -212,6 +212,12 @@ Stop and unregister the ServiceWorker in the current scope.
 Please be aware that the `ServiceWorker` livecycle is handled by the browser and it could persist if another tab/window is also using it
 
 See the [spec][spec] for more information
+
+### bock.workerPath
+Type: `string`
+
+Bock worker file path. Default to `/bock.worker.js`.
+Be aware with the `scope` security limitations
 
 ### bock.VERSION
 Type: `string`

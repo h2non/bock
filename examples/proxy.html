@@ -5,7 +5,7 @@
   <script src="../bock.js"></script>
   <script src="//cdn.rawgit.com/lil-js/http/0.1.15/http.js"></script>
   <script type="text/javascript">
-    // configure proxy
+    // configure the proxy request
     bock('http://httpbin.org')
       .get('/status/204')
       .proxy('http://httpbin.org/status/200')

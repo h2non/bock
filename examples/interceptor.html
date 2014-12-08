@@ -5,7 +5,7 @@
   <script src="../bock.js"></script>
   <script src="//cdn.rawgit.com/lil-js/http/0.1.15/http.js"></script>
   <script type="text/javascript">
-    // configure mocks
+    // configure the mock request
     bock('http://httpbin.org')
       .get('/status/204')
       .replyWithBody('Hello World')
