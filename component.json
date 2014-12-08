@@ -9,7 +9,8 @@
   "scripts": [
     "bock.js",
     "bock.min.js",
-    "bock.min.js.map"
+    "bock.min.js.map",
+    "bock.worker.js"
   ],
   "keywords": [
     "serviceworker",

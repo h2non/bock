@@ -118,7 +118,7 @@ function normalizeURL(url) {
 }
 
 function onFailure(ex) {
-  throw ex
+  throw ex // by the moment, fail making noise
 }
 
 },{"./proxy":3,"./store":5,"./utils":6}],2:[function(require,module,exports){
@@ -284,7 +284,7 @@ store.append = function (data) {
 
 store.remove = function (id) {
   var item = store.get(id)
-  if (item) buf.splice(1, item.indexOf(item))
+  if (item) buf.splice(buf.indexOf(item), 1)
 }
 
 store.get = function (id) {

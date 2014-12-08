@@ -1,7 +1,6 @@
 # bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Code Climate](https://codeclimate.com/github/h2non/bock/badges/gpa.svg)](https://codeclimate.com/github/h2non/bock) [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
-Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec]
-and providing an **elegant** and **simple programmatic approach**
+Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec] which provides an **elegant**, expressive and **simple programmatic approach**
 
 **Note** that **ServiceWorker is still an experimental technology** and which its standard is [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
 
@@ -216,6 +215,42 @@ Current library semantic version
 - Support for easily handling of cache
 - Support for request transforming
 - Better fallback handling
+
+## Contributing
+
+Wanna help? Cool! It will be appreciated :)
+
+You must add new test cases for any new feature or refactor you do,
+always following the same design/code patterns that already exist
+
+### Development
+
+Only [node.js](http://nodejs.org) is required for development
+
+Clone the repository
+```bash
+$ git clone https://github.com/h2non/bock.git && cd bock
+```
+
+Install dependencies
+```bash
+$ npm install
+```
+
+Generate browser bundle source
+```bash
+$ make browser
+```
+
+Run tests
+```bash
+$ make test
+```
+
+See the [examples](https://github.com/h2non/bock/tree/master/examples)
+```bash
+$ ./node_modules/.bin/http-server
+```
 
 ## License
 
