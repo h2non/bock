@@ -28,9 +28,8 @@ endef
 default: all
 all: test
 browser: banner browserify uglify
-test: browser mocha test-phantom cucumber
-test-phantom: mock-server-stop mock-server mocha-phantom mock-server-stop
-test-browser: mock-server-stop mock-server karma mock-server-stop
+test: browser mocha
+test-browser: karma
 
 banner:
 	@echo $(BANNER) > bock.js
@@ -45,26 +44,13 @@ uglify:
 	$(UGLIFYJS) bock.js --mangle --preamble $(BANNER) --source-map bock.min.js.map --source-map-url http://cdn.rawgit.com/h2non/bock/$(VERSION)/bock.min.js.map > bock.min.js
 
 mocha:
-	$(MOCHA) --reporter spec --ui tdd
-
-mocha-phantom:
-	$(MOCHA_PHANTOM) --reporter spec --ui bdd test/runner.html
-	$(MAKE) mock-server-stop
+	$(MOCHA) --reporter spec --ui tdd test/utils test/store
 
 loc:
 	wc -l bock.js
 
-mock-server:
-	$(STUBBY) -d ./test/fixtures/mocks.yaml > /dev/null & echo $$! > .server.pid
-
-mock-server-stop:
-	[ -f .server.pid ] && kill -9 `cat .server.pid | head -n 1` && rm -f .server.pid || exit 0
-
 karma:
 	$(KARMA) start
-
-karma-ci:
-	$(KARMA) start --single-run --browsers Firefox
 
 gzip:
 	gzip -c bock.min.js | wc -c
