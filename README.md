@@ -43,7 +43,9 @@ You can do it opening `chrome://flags`. Then you should restart the browser
 
 Open `chrome://serviceworker-internals/`, or alternatively use `chrome://inspect/#service-workers`
 
+<!--
 ## Limitations notes
+-->
 
 ## Browser Support
 
