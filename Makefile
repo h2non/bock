@@ -33,13 +33,13 @@ test-phantom: mock-server-stop mock-server mocha-phantom mock-server-stop
 test-browser: mock-server-stop mock-server karma mock-server-stop
 
 banner:
-	@echo $(BANNER) > resilient.js
+	@echo $(BANNER) > bock.js
 
 browserify:
 	$(BROWSERIFY) \
 		--exports require \
 		--standalone bock \
-		--entry ./lib/index.js >> ./bock.js
+		--entry ./lib/index.js > ./bock.js
 
 uglify:
 	$(UGLIFYJS) bock.js --mangle --preamble $(BANNER) --source-map bock.min.js.map --source-map-url http://cdn.rawgit.com/h2non/bock/$(VERSION)/bock.min.js.map > bock.min.js
@@ -51,11 +51,8 @@ mocha-phantom:
 	$(MOCHA_PHANTOM) --reporter spec --ui bdd test/runner.html
 	$(MAKE) mock-server-stop
 
-cucumber:
-	$(CUCUMBER) -f pretty -r features/support -r features/step_definitions
-
 loc:
-	wc -l resilient.js
+	wc -l bock.js
 
 mock-server:
 	$(STUBBY) -d ./test/fixtures/mocks.yaml > /dev/null & echo $$! > .server.pid

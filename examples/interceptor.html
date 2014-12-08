@@ -2,9 +2,23 @@
 <html>
 <head>
   <title>bock interceptor</title>
-  <!--<script src="../bock.js"></script>-->
+  <script src="../bock.js"></script>
   <script src="//cdn.rawgit.com/lil-js/http/0.1.15/http.js"></script>
   <script type="text/javascript">
+    // configure mocks
+    bock('http://httpbin.org')
+      .get('/status/204')
+      .reply(200)
+
+    bock('http://httpbin.org')
+      .get('/headers')
+      .reply(404)
+
+    bock('http://httpbin.org')
+      .get('/status/201')
+      .proxy('http://httpbin.org/user-agent')
+
+    /*
     navigator.serviceWorker.register('/lib/worker.js', { scope: '/lib/' }).then(function (registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope)
@@ -15,9 +29,22 @@
       // registration failed :(
       console.log('ServiceWorker registration failed: ', err)
     })
+    */
 
-    function sendSampleRequests() {
+    function sendSampleRequest() {
       lil.http('http://httpbin.org/status/204', function (err, res) {
+        console.log(err, res)
+      })
+    }
+
+    function sendPostRequest() {
+      lil.http.post('http://httpbin.org/post', { data: '{"hello":"world"}' }, function (err, res) {
+        console.log(err, res)
+      })
+    }
+
+    function sendLocalRequest() {
+      lil.http('/lib/worker.js', function (err, res) {
         console.log(err, res)
       })
     }
