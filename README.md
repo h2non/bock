@@ -57,12 +57,14 @@ For more information about browsers support see "[is ServiceWorker ready?](https
 
 #### Mocking
 
+Basic request mocking and expectation
 ```js
 bock('http://www.google.com')
   .get('/search')
   .reply(200, 'Hello from Google!')
 ```
 
+Define custom request headers and response body
 ```js
 bock('http://my.api.com')
   .post('/users/1')
@@ -82,7 +84,7 @@ bock('http://my.api.com')
   .forward()
 ```
 
-Complex request proxy
+Custom request override with different method, headers and body
 ```js
 bock('http://my.api.com')
   .get('/users/1')
@@ -91,6 +93,12 @@ bock('http://my.api.com')
   .withHeaders({ Authorization: 'Bearer 0123456789' })
   .withBody('Hello World')
   .forward()
+```
+
+#### Restoring
+
+```js
+nock.cleanAll()
 ```
 
 ## API
