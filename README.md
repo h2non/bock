@@ -52,7 +52,7 @@ Open [chrome://serviceworker-internals/](chrome://serviceworker-internals/), or 
 --- | --- | --- | --- | --- |
 Canary ✔ | Nightly ✔ | No | ? ✔ | No |
 
-For more information about browser support see "[is ServiceWorker ready](https://jakearchibald.github.io/isserviceworkerready/)" site
+For more information about browsers support see "[is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)" site
 
 ## Basic usage
 
