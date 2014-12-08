@@ -37,11 +37,11 @@ cp ./bower_components/bock/bock.worker.js .
 ### Chrome Canary setup
 
 To start hacking with ServiceWorker you should enable the "experimental Web Platform features" flag in Canary.
-You can do it opening [chrome://flags](chrome://flags). Then you should restart the browser
+You can do it opening `chrome://flags`. Then you should restart the browser
 
 #### How to debug
 
-Open [chrome://serviceworker-internals/](chrome://serviceworker-internals/), or alternatively use [chrome://inspect/#service-workers](chrome://inspect/#service-workers)
+Open `chrome://serviceworker-internals/`, or alternatively use `chrome://inspect/#service-workers`
 
 ## Limitations notes
 
