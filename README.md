@@ -7,7 +7,7 @@ Note that ServiceWorker is still an experimental and new Web standard which is s
 
 Consider that this library is very much a work in progress, as I enjoy with it as an experimental hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
 
-If you are new with ServiceWorker, before getting started you could take a look to the [explainer][explainer] document, [HTML5rocks introduction][html5rocks] post and the [draft specification][spec]
+If you are new with ServiceWorker, before getting started you could take a look to the [explainer][explainer] document, [HTML5rocks introduction][html5rocks] or the [draft specification][spec]
 
 ## Installation
 
