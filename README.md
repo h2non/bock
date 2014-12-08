@@ -1,9 +1,9 @@
 # bock
 
-Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Workers][spec]
+Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec]
 and providing an **elegant** and **simple programmatic approach**
 
-Note that Service Workers is an experimental and new Web standard which is still [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers.
+Note that ServiceWorker is still an experimental and new Web standard which is still [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers.
 
 Consider that this library is very much a work in progress, as I enjoy with it as an experimental hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
 
