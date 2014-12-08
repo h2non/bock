@@ -1,10 +1,10 @@
 # bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Code Climate](https://codeclimate.com/github/h2non/bock/badges/gpa.svg)](https://codeclimate.com/github/h2non/bock) [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
-Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec] which provides an **elegant**, expressive and **simple programmatic approach**
+Browser **next-generation HTTP traffic mocking**, **proxy**, **interceptor** and request **transformer** using [Service Worker][spec] which provides an **elegant**, **expressive** and **simple programmatic approach**
 
-**Note** that **ServiceWorker is still an experimental technology** and which its standard is [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
+**Note** that **ServiceWorker is still an experimental technology** and its standard is [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
 
-You should consider this library is very much a work in progress, as I enjoy with it as an experimental hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
+Aditionally you should consider that this library is very much a work in progress, as it is a hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
 
 If you are new with ServiceWorker, before getting started you could take a look to the [explainer][explainer] document, [HTML5rocks introduction][html5rocks] or the [draft specification][spec]
 
@@ -107,6 +107,11 @@ nock.cleanAll()
 
 Create a new `Bock` mocking/proxy scope
 
+Supported options are:
+
+- **path** `string` - Path to `bock.worker.js`. Default to `/bock.worker.js`
+- **scope*+ `string` - Default worker path scope
+
 #### bock#get(path)
 
 Intercept a GET request with the given URL path
@@ -197,9 +202,9 @@ Return `true` if the ServiceWorker in currently controlling the current page
 
 Disable and flush all mocks/proxy configurations. Restore to initial state
 
-### bock.mocks()
+### bock.entries()
 
-Return a collection of mocks configuration
+Return a collection of the current active mocks/proxy configuration entries
 
 ### bock.stop()
 

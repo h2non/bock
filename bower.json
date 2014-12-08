@@ -35,5 +35,8 @@
     ".npmignore",
     "package.json",
     "component.json"
-  ]
+  ],
+  "devDependencies": {
+    "lil-http": "~0.1.15"
+  }
 }
