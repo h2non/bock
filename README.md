@@ -98,7 +98,7 @@ bock('http://my.api.com')
 #### Restoring
 
 ```js
-nock.cleanAll()
+bock.cleanAll()
 ```
 
 ## API
