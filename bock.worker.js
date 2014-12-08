@@ -1,14 +1,26 @@
 var store = []
 
+function findMockById(id) {
+  for (var i = 0, l = store.length; i < l; i += 1) {
+    if (store[i].id === id) {
+      store.splice(i, 1)
+      break
+    }
+  }
+}
+
 self.addEventListener('message', function (event) {
   var data = event.data
   if (data) {
     switch (data.topic) {
-      case 'bock.add': addRequest(data)
+      case 'bock.add':
+        store.push({ id: data.id, config: data.config })
         break
-      case 'bock.clean': cleanRequest()
+      case 'bock.remove':
+        store = data.config
         break
-      case 'block.flush': flushData()
+      case 'bock.flush':
+        store = []
         break
     }
   }
@@ -20,31 +32,44 @@ self.addEventListener('activate', function (event) {
 })
 
 self.addEventListener('fetch', function (event) {
-  //postMessage({ topic: 'request.fetch', data: event.request })
   var match = matchRequest(event.request)
   if (match) {
-    event.respondWith(buildResponse(match.config))
+    event.respondWith(injectResponse(match.config))
   }
 })
 
-function buildResponse(config) {
+function injectResponse(config) {
   if (config.proxy) {
-    return fetch(config.url, {
-      method: config.method,
-      body: config.proxyBody,
-      headers: config.proxyHeaders
-    })
+    return proxyRequest(config)
   } else {
-    return new Response(config.responseBody || '', { status: config.responseCode, headers: config.headers })
+    return buildMockResponse(config)
   }
 }
 
+function buildMockResponse(config) {
+  return new Response(config.responseBody || '', {
+    status: config.responseCode,
+    headers: config.headers
+  })
+}
+
+function proxyRequest(config) {
+  return fetch(config.proxy, {
+    method: config.proxyMethod || config.method,
+    body: config.body || config.proxyBody,
+    headers: config.headers || config.proxyHeaders,
+    credentials: config.credentials
+  })
+}
+
 function matchRequest(request) {
-  return store.filter(matchURL(request)).filter(matchHeaders(request)).shift()
+  return store
+    .filter(matchURL(request))
+    .filter(matchHeaders(request))
+    .shift()
 }
 
 function matchURL(request) {
-  // to do: support regex
   var requestUrl = new URL(request.url)
   return function (mock) {
     var mockUrl = new URL(mock.config.url)
@@ -56,7 +81,7 @@ function matchURL(request) {
   }
 }
 
-function matchParams() {
+function matchParams(request, config) {
 
 }
 
@@ -77,8 +102,4 @@ function matchHeaders(request) {
     }
     return true
   }
-}
-
-function addRequest(data) {
-  store.push({ id: data.id, config: data.config })
 }

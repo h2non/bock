@@ -3,14 +3,15 @@ module.exports = function(config) {
     files: [
       'node_modules/chai/chai.js',
       'bock.js',
+      'bock.worker.js',
       'test/bock.js'
     ],
     frameworks: ['mocha'],
     browsers: [
-      'ChromeCanary',
-      'FirefoxNightly'
+      'ChromeCanary'
+      //'FirefoxNightly'
     ],
     reports: ['progress'],
-    singleRun: true
+    singleRun: false
   })
 }

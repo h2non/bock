@@ -17,19 +17,7 @@
     bock('http://httpbin.org')
       .get('/status/201')
       .proxy('http://httpbin.org/user-agent')
-
-    /*
-    navigator.serviceWorker.register('/lib/worker.js', { scope: '/lib/' }).then(function (registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope)
-      setTimeout(function () {
-        sendSampleRequests()
-      }, 500)
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err)
-    })
-    */
+      .forward()
 
     function sendSampleRequest() {
       lil.http('http://httpbin.org/status/204', function (err, res) {
@@ -51,7 +39,6 @@
   </script>
 </head>
 <body>
-  <a href="/sample">Link</a>
-  <img src="https://farm3.staticflickr.com/2916/14632988974_b3fe4012b8.jpg">
+  <p>Open the DevTools console</p>
 </body>
 </html>
