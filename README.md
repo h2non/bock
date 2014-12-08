@@ -69,7 +69,8 @@ bock('http://my.api.com')
   .post('/users/1')
   .headers({ 'Content-Type': 'application/json' })
   .replyWithHeaders({ 'Content-Type': 'text/xml' })
-  .replyWithBody({ 'Content-Type': 'text/xml' })
+  .replyWithBody('<xml><user><name>Chuck Norris</name></user></xml>')
+  .reply(200)
 ```
 
 #### Proxy
