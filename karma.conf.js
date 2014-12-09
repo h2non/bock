@@ -12,7 +12,10 @@ module.exports = function(config) {
     customLaunchers: {
       ChromeServiceWorker: {
         base: 'ChromeCanary',
-        flags: ['--enable-experimental-web-platform-features']
+        flags: [
+          '--enable-experimental-web-platform-features',
+          '--enable-service-worker-sync'
+        ]
       }
     },
     browsers: [

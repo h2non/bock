@@ -1,7 +1,7 @@
 {
   "name": "bock",
   "version": "0.1.0-beta.0",
-  "description": "Browser next-generation HTTP traffic mocking, proxy, interceptor and request transformer using Service Worker",
+  "description": "Browser next-generation HTTP traffic mocking, proxy and request transformer using Service Worker",
   "license": "MIT",
   "repository": "h2non/bock",
   "author": "Tomas Aparicio",
