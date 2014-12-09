@@ -106,7 +106,7 @@ bock.cleanAll()
 #### Checking Worker status
 
 Due to ServiceWorker native limitations, you may need to reload the page
-to allow the worker can controller the desired page scope
+in order to allow the worker can do the magic stuff
 
 ```js
 bock.isEnable() // -> true
