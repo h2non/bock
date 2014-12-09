@@ -1,6 +1,6 @@
 # bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
-**Next-generation browser HTTP traffic mocking**, **proxy** and request **[transformer](https://github.com/h2non/bock/issues/10)** using [Service Worker][spec] and providing an **elegant**, **expressive** and **simple programmatic approach**
+**Next-generation browser HTTP traffic mocking**, **proxy** and request **[transformer](https://github.com/h2non/bock/issues/10)** using [Service Worker][spec] for a reliable and proper MITM-like network interceptor. It provides an **elegant**, **expressive** and **simple programmatic approach**
 
 **Note** that **ServiceWorker is still an experimental technology** and its standard is [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
 
