@@ -100,7 +100,22 @@ bock('http://my.api.com')
 #### Restoring
 
 ```js
-bock.cleanAll()
+bock.cleanAll() 
+```
+
+#### Checking Worker status
+
+Due to ServiceWorker native limitations, you may need to reload the page 
+to allow the worker can controller the desired page scope
+
+```js
+bock.isEnable() // -> true
+```
+
+#### Retrieving configured mocks/proxies
+
+```js
+mock.entries() // -> [{ id: '123', config: { ... } ... }]
 ```
 
 ## API
