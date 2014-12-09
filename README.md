@@ -2,7 +2,7 @@
 
 **Next-generation browser HTTP traffic mocking**, **proxy** and request **[transformer](https://github.com/h2non/bock/issues/10)** using [Service Worker][spec] for a reliable and safe MITM-like network interceptor. It provides an **elegant**, **expressive** and **simple programmatic approach**
 
-**Note** that **ServiceWorker is still an experimental technology** and its standard is [under active discussion][discussion] and is [not currently supported][browser-support] by latest production browsers
+**Note** that **ServiceWorker is still an experimental technology** and its standard is [under active discussion][discussion] and it is [not currently supported][browser-support] by latest production browsers
 
 Aditionally you should consider that this library is very much a work in progress, as it is a hacking-driven implementation, therefore important changes can be done in a near future and API retrocompatibility is not premise
 
@@ -100,12 +100,12 @@ bock('http://my.api.com')
 #### Restoring
 
 ```js
-bock.cleanAll() 
+bock.cleanAll()
 ```
 
 #### Checking Worker status
 
-Due to ServiceWorker native limitations, you may need to reload the page 
+Due to ServiceWorker native limitations, you may need to reload the page
 to allow the worker can controller the desired page scope
 
 ```js
@@ -115,7 +115,7 @@ bock.isEnable() // -> true
 #### Retrieving configured mocks/proxies
 
 ```js
-mock.entries() // -> [{ id: '123', config: { ... } ... }]
+bock.entries() // -> [{ id: '123', config: { ... } ... }]
 ```
 
 ## API
