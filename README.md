@@ -22,7 +22,7 @@ component install h2non/bock
 
 Or loading the script remotely
 ```html
-<script src="//cdn.rawgit.com/h2non/bock/0.1.0-beta.0/bock.js"></script>
+<script src="//cdn.rawgit.com/h2non/bock/0.1.0-beta.1/bock.js"></script>
 ```
 
 ### Setup
