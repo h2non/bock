@@ -1,4 +1,4 @@
-# bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
+# bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Code Climate](https://codeclimate.com/github/h2non/bock/badges/gpa.svg)](https://codeclimate.com/github/h2non/bock) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
 **Next-generation browser HTTP traffic mocking**, **proxy**, and request **[transformer](https://github.com/h2non/bock/issues/10)** with inferred delays. It uses [ServiceWorkers][spec] for a reliable and safe MITM-like network interceptor and provides an **elegant**, **expressive** and **simple programmatic approach**
 
