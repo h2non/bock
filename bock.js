@@ -108,6 +108,11 @@ Bock.prototype.replyWith = function (code, body, headers) {
   return this.forward()
 }
 
+Bock.prototype.delay = function (ms) {
+  this.config.delay = ms
+  return this
+}
+
 Bock.prototype.forward = function () {
   store.append(this)
   return this.service.append(this.id, this.config).catch(onFailure)

@@ -1,6 +1,6 @@
 # bock [![Build Status](https://api.travis-ci.org/h2non/bock.svg?branch=master)][travis] [![Version](https://img.shields.io/bower/v/bock.svg)](https://github.com/h2non/bock/releases) [![Stories in Ready](https://badge.waffle.io/h2non/bock.png?label=ready&title=Ready)](https://waffle.io/h2non/bock)
 
-**Next-generation browser HTTP traffic mocking**, **proxy** and request **[transformer](https://github.com/h2non/bock/issues/10)** using [Service Worker][spec] for a reliable and safe MITM-like network interceptor. It provides an **elegant**, **expressive** and **simple programmatic approach**
+**Next-generation browser HTTP traffic mocking**, **proxy**, inferred delays and request **[transformer](https://github.com/h2non/bock/issues/10)** using [Service Worker][spec] for a reliable and safe MITM-like network interceptor. It provides an **elegant**, **expressive** and **simple programmatic approach**
 
 **Note** that **ServiceWorker is still an experimental technology** and its standard is [under active discussion][discussion] and it is [not currently supported][browser-support] by latest production browsers
 
@@ -73,6 +73,7 @@ bock('http://my.api.com')
   .headers({ 'Content-Type': 'application/json' })
   .replyWithHeaders({ 'Content-Type': 'text/xml' })
   .replyWithBody('<xml><user><name>Chuck Norris</name></user></xml>')
+  .delay(100)
   .reply(200)
 ```
 
@@ -94,6 +95,7 @@ bock('http://my.api.com')
   .withMethod('POST')
   .withHeaders({ Authorization: 'Bearer 0123456789' })
   .withBody('Hello World')
+  .delay(100)
   .forward()
 ```
 
@@ -168,6 +170,10 @@ Define the request headers to match
 #### bock#auth(user, password)
 
 Current not supported. Use `Authorization` header instead
+
+#### bock#delay(miliseconds)
+
+Delay the response the given miliseconds
 
 #### body#replyHeaders(headers)
 Alias: `replyWithHeaders()`

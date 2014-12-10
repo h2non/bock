@@ -47,6 +47,14 @@ function injectResponse(config) {
 }
 
 function buildMockResponse(config) {
+  var response = mockResponse(config)
+  if (config.delay) {
+    response = delayResponse(config, response)
+  }
+  return response
+}
+
+function mockResponse(config) {
   return new Response(config.responseBody || '', {
     status: config.responseCode,
     headers: config.headers
@@ -54,11 +62,27 @@ function buildMockResponse(config) {
 }
 
 function proxyRequest(config) {
+  var proxy = forwardProxyRequest(config)
+  if (config.delay) {
+    proxy = delayResponse(config, proxy)
+  }
+  return proxy
+}
+
+function forwardProxyRequest(config) {
   return fetch(config.proxy, {
     method: config.proxyMethod || config.method,
     body: config.proxyBody || config.body,
     headers: config.headers || config.proxyHeaders,
     credentials: config.credentials
+  })
+}
+
+function delayResponse(config, response) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(response)
+    }, config.delay)
   })
 }
 

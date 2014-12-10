@@ -9,6 +9,7 @@
     bock('http://httpbin.org')
       .get('/status/204')
       .proxy('http://httpbin.org/status/200')
+      .delay(1000)
       .forward()
 
     function sendSampleRequest() {

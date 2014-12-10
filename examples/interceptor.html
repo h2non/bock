@@ -10,6 +10,7 @@
       .get('/status/204')
       .replyWithBody('Hello World')
       .replyWithHeaders({ 'Content-Type': 'text/plain' })
+      .delay(1000)
       .reply(200)
 
     function sendSampleRequest() {
