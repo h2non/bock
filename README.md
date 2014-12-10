@@ -129,7 +129,7 @@ Create a new `Bock` mocking/proxy scope
 Supported options are:
 
 - **path** `string` - Path to `bock.worker.js`. Default to `/bock.worker.js`
-- **scope*+ `string` - Default worker path scope
+- **scope** `string` - Worker control path scope. Default to `/`
 
 #### bock#get(path)
 
