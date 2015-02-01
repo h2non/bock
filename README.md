@@ -43,17 +43,12 @@ You can do it opening `chrome://flags`. Then you should restart the browser
 
 Open `chrome://serviceworker-internals/`, or alternatively use `chrome://inspect/#service-workers`
 
-<!--
-## Limitations notes
--->
+## Environments Supported
 
-## Browser Support
-
+![Node.js](http://www.dufeo.com/img/node-js-logo.jpeg) |
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Canary ✔ | Nightly ✔ | No | ? | No |
-
-For more information about browsers support see "[is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)" site
+| --- | --- | --- | --- | --- | --- |
+| +0.8 | +5 | +3.5 | +9 | +10 | +5 |
 
 ## Basic usage
 
